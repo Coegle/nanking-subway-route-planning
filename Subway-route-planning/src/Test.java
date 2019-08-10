@@ -5,8 +5,8 @@ import java.util.List;
 
 /**
  * FileName:Test.java
- * µ÷ÊÔ²âÊÔÊ¹ÓÃ
- * ÕıÊ½³ÌĞò²»»á´Ó´Ë½øÈë
+ * è°ƒè¯•æµ‹è¯•ä½¿ç”¨
+ * æ­£å¼ç¨‹åºä¸ä¼šä»æ­¤è¿›å…¥
  * @author yang1
  *
  */
@@ -21,8 +21,11 @@ public class Test {
 		List<Station> map = new ArrayList<>();
 		FileIO.readSubway(map);
 		System.out.println(map.size());
+		for(Station s:map) {
+			System.out.println(s);
+		}
 		Dijkstra sw = new Dijkstra();
-		sw.cal(map.get(map.indexOf(new Station("ÄÏ¾©Õ¾",""))), map.get(map.indexOf(new Station("ººÖĞÃÅ",""))) , map.size());
+		sw.cal(map.get(map.indexOf(new Station("å—äº¬ç«™",""))), map.get(map.indexOf(new Station("æ±‰ä¸­é—¨",""))) , map.size());
 	}
 	
 }

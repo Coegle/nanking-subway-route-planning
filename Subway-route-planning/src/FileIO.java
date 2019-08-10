@@ -10,8 +10,8 @@ import java.util.List;
 
 /**
  * FileName:FileIO.java
- * ´¦ÀíÎÄ¼şµÄ¶ÁĞ´
- * °üÀ¨Á½¸ö¾²Ì¬ÊôĞÔ£¬Á½¸ö¾²Ì¬·½·¨´¦Àí²»Í¬µÄ¶ÁÈ¡ÎÄ¼şÈÎÎñ£¬Ò»¸ö¾²Ì¬·½·¨Ğ´ÈëÎÄ¼ş
+ * å¤„ç†æ–‡ä»¶çš„è¯»å†™
+ * åŒ…æ‹¬ä¸¤ä¸ªé™æ€å±æ€§ï¼Œä¸¤ä¸ªé™æ€æ–¹æ³•å¤„ç†ä¸åŒçš„è¯»å–æ–‡ä»¶ä»»åŠ¡ï¼Œä¸€ä¸ªé™æ€æ–¹æ³•å†™å…¥æ–‡ä»¶
  * @author yang1
  *
  */
@@ -38,8 +38,8 @@ public class FileIO {
 			
 			
 			for(String s:stations) {
-				Station test=new Station(s,lineNo);//ÒªÌí¼ÓµÄ³µÕ¾
-				if(map.contains(test)) {//ÒÑ¾­ÓĞÁË
+				Station test=new Station(s,lineNo);//è¦æ·»åŠ çš„è½¦ç«™
+				if(map.contains(test)) {//å·²ç»æœ‰äº†
 					int index=(map.indexOf(test));
 					
 					map.get(index).isInterchangeStation=true;
@@ -102,13 +102,13 @@ public class FileIO {
 	 */
 	public static void writeStations(String result)  {
 		 try {
-			 File writeFile = new File(WRITE_PATH); // Ïà¶ÔÂ·¾¶£¬Èç¹ûÃ»ÓĞÔòÒª½¨Á¢Ò»¸öĞÂµÄoutput.txtÎÄ¼ş
-			 writeFile.createNewFile();// ´´½¨ĞÂÎÄ¼ş,ÓĞÍ¬ÃûµÄÎÄ¼şµÄ»°Ö±½Ó¸²¸Ç
+			 File writeFile = new File(WRITE_PATH); // ç›¸å¯¹è·¯å¾„ï¼Œå¦‚æœæ²¡æœ‰åˆ™è¦å»ºç«‹ä¸€ä¸ªæ–°çš„output.txtæ–‡ä»¶
+			 writeFile.createNewFile();// åˆ›å»ºæ–°æ–‡ä»¶,æœ‰åŒåçš„æ–‡ä»¶çš„è¯ç›´æ¥è¦†ç›–
 			 try(OutputStreamWriter writerStream = new OutputStreamWriter(new FileOutputStream(writeFile),"UTF-8");
 					 BufferedWriter writer = new BufferedWriter(writerStream)
 			){
 				 writer.write(result);
-					writer.flush(); // °Ñ»º´æÇøÄÚÈİÑ¹ÈëÎÄ¼ş 
+					writer.flush(); // æŠŠç¼“å­˜åŒºå†…å®¹å‹å…¥æ–‡ä»¶ 
 			 }
 		} catch (IOException e) {
 			e.printStackTrace();

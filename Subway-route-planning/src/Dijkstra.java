@@ -11,7 +11,7 @@ import java.util.List;
  */
 
 public class Dijkstra {
-	private List<Station> outList = new ArrayList<Station>();//ÒÑ¾­·ÖÎö¹ıµÄÕ¾µã
+	private List<Station> outList = new ArrayList<Station>();//å·²ç»åˆ†æè¿‡çš„ç«™ç‚¹
 	
 	/**
 	 * 
@@ -20,12 +20,12 @@ public class Dijkstra {
 	 */
 	public void cal(Station s1, Station s2,int num) {
 
-		if(outList.size()==num) {//Íê³É
+		if(outList.size()==num) {//å®Œæˆ
 			finish(s1,s2);
 			return;
 		}
 		
-		if(!outList.contains(s1)) {//³õÊ¼»¯
+		if(!outList.contains(s1)) {//åˆå§‹åŒ–
 			outList.add(s1);
 		}
 		if(s1.solutions.isEmpty()) {
@@ -34,7 +34,7 @@ public class Dijkstra {
 			}
 		}
 		Station parent = getShortestPath(s1);
-		if(parent==s2) {//ÕÒµ½
+		if(parent==s2) {//æ‰¾åˆ°
 			finish(s1,s2);
 			return;
 		}
@@ -44,21 +44,21 @@ public class Dijkstra {
 			}
 			int shortestPath = s1.getAllPassedStations(parent).size();
 			if(s1.getAllPassedStations(child).contains(child)){
-				//Èç¹ûs1ÒÑ¾­¼ÆËã¹ıµ½´ËchildµÄ¾­¹ı¾àÀë£¬ÄÇÃ´±È½Ï³ö×îĞ¡µÄ¾àÀë
+				//å¦‚æœs1å·²ç»è®¡ç®—è¿‡åˆ°æ­¤childçš„ç»è¿‡è·ç¦»ï¼Œé‚£ä¹ˆæ¯”è¾ƒå‡ºæœ€å°çš„è·ç¦»
 				if((s1.getAllPassedStations(child).size()-1) > shortestPath){
-					//ÖØÖÃS1µ½ÖÜÎ§¸÷Õ¾µÄ×îĞ¡Â·¾¶
+					//é‡ç½®S1åˆ°å‘¨å›´å„ç«™çš„æœ€å°è·¯å¾„
 					s1.getAllPassedStations(child).clear();
 					s1.getAllPassedStations(child).addAll(s1.getAllPassedStations(parent));
 					s1.getAllPassedStations(child).add(child);
 				}
 			} else {
-				//Èç¹ûs1»¹Ã»ÓĞ¼ÆËã¹ıµ½´ËchildµÄ¾­¹ı¾àÀë
+				//å¦‚æœs1è¿˜æ²¡æœ‰è®¡ç®—è¿‡åˆ°æ­¤childçš„ç»è¿‡è·ç¦»
 				s1.getAllPassedStations(child).addAll(s1.getAllPassedStations(parent));
 				s1.getAllPassedStations(child).add(child);
 			}
 		}
 		outList.add(parent);
-		cal(s1,s2,num);//ÖØ¸´¼ÆËã£¬ÍùÍâÃæÕ¾µãÀ©Õ¹
+		cal(s1,s2,num);//é‡å¤è®¡ç®—ï¼Œå¾€å¤–é¢ç«™ç‚¹æ‰©å±•
 	}
 	
 	/**
@@ -73,7 +73,7 @@ public class Dijkstra {
 			if(outList.contains(s)){
 				continue;
 			}
-			LinkedHashSet<Station> set  = station.getAllPassedStations(s);//²ÎÊıstationµ½sËù¾­¹ıµÄËùÓĞÕ¾µãµÄ¼¯ºÏ
+			LinkedHashSet<Station> set  = station.getAllPassedStations(s);//å‚æ•°stationåˆ°sæ‰€ç»è¿‡çš„æ‰€æœ‰ç«™ç‚¹çš„é›†åˆ
 			if(set.size() < minPatn){
 				minPatn = set.size();
 				rets = s;
@@ -84,9 +84,9 @@ public class Dijkstra {
 	
 	/**
 	 * 
-	 * ´¦ÀíÉú³É×îºóµÄ½á¹û´®£ºresult
-	 * ´ÓgetAllPassStationsÖĞ»ñµÃ×î¶ÌÂ·¾¶Ëù¾­Õ¾µã
-	 * Í¨¹ıisInterchangeStationÅĞ¶ÏÊÇ·ñ·¢Éú»»³Ë²¢¼ÓÈë»»³ËĞÅÏ¢
+	 * å¤„ç†ç”Ÿæˆæœ€åçš„ç»“æœä¸²ï¼šresult
+	 * ä»getAllPassStationsä¸­è·å¾—æœ€çŸ­è·¯å¾„æ‰€ç»ç«™ç‚¹
+	 * é€šè¿‡isInterchangeStationåˆ¤æ–­æ˜¯å¦å‘ç”Ÿæ¢ä¹˜å¹¶åŠ å…¥æ¢ä¹˜ä¿¡æ¯
 	 * @param 
 	 * @return 
 	 */

@@ -7,25 +7,25 @@ import org.apache.commons.cli.*;
 
 /**
  * FileName:Subway.java
- * ³ÌĞòÖ÷Èë¿Ú£¬ÓÃÓÚ½âÎöÃüÁîĞĞ²ÎÊı
+ * ç¨‹åºä¸»å…¥å£ï¼Œç”¨äºè§£æå‘½ä»¤è¡Œå‚æ•°
  * @author yang1
  *
  */
  class Subway {
 	public static void main(String[] args) throws IOException {
-		String[] args1 = {"-map", "subway.txt", "-o", "station.txt", "-b","Î÷°²ÃÅ", "·ò×ÓÃí"};
-		// ¸ù¾İÃüÁîĞĞ²ÎÊı¶¨ÒåOption¶ÔÏó£¬µÚ1/2/3¸ö²ÎÊı·Ö±ğÊÇÖ¸ÃüÁîĞĞ²ÎÊıÃûËõĞ´¡¢ÊÇ·ñÓĞ²ÎÊıÖµ¡¢²ÎÊıÃèÊö
+		String[] args1 = {"-map", "subway.txt", "-o", "station.txt", "-b","å—äº¬å—ç«™", "æ–°è¡—å£"};
+		// æ ¹æ®å‘½ä»¤è¡Œå‚æ•°å®šä¹‰Optionå¯¹è±¡ï¼Œç¬¬1/2/3ä¸ªå‚æ•°åˆ†åˆ«æ˜¯æŒ‡å‘½ä»¤è¡Œå‚æ•°åç¼©å†™ã€æ˜¯å¦æœ‰å‚æ•°å€¼ã€å‚æ•°æè¿°
 		Option opt_map = new Option("map",true,"input file name");
         opt_map.setRequired(true);
         Option opt_o = new Option("o",true,"output file name");
-        opt_o.setRequired(false);    // ÉèÖÃ¸Ã²ÎÊıÊÇ·ñÊÇ±ØĞëµÄ
+        opt_o.setRequired(false);    // è®¾ç½®è¯¥å‚æ•°æ˜¯å¦æ˜¯å¿…é¡»çš„
         Option opt_a = new Option("a",true,"inquire stations");
         opt_a.setRequired(false);
         Option opt_b = OptionBuilder.withArgName("args")
         		.hasArgs(2)
         		.withDescription("inquire the shortest route")
         		.create("b");
-        //hasArgs()±íÊ¾²ÎÊıµÄ¸öÊı
+        //hasArgs()è¡¨ç¤ºå‚æ•°çš„ä¸ªæ•°
 
         Options options = new Options();
         options.addOption(opt_map);
@@ -40,26 +40,26 @@ import org.apache.commons.cli.*;
         try {
             cli = cliParser.parse(options, args1);
         } catch (ParseException e) {
-            // ½âÎöÊ§°ÜÊÇÓÃ HelpFormatter ´òÓ¡ °ïÖúĞÅÏ¢
+            // è§£æå¤±è´¥æ˜¯ç”¨ HelpFormatter æ‰“å° å¸®åŠ©ä¿¡æ¯
             helpFormatter.printHelp(">>>>>>WRONG OPTIONS!", options);
             e.printStackTrace();
         }
         String readfile=null, writefile=null;
-        //¸ù¾İ²»Í¬²ÎÊıÖ´ĞĞ²»Í¬Âß¼­
+        //æ ¹æ®ä¸åŒå‚æ•°æ‰§è¡Œä¸åŒé€»è¾‘
         
-        readfile = cli.getOptionValue("map");  // »ñÈ¡²ÎÊı¡°map¡±¶ÔÓ¦µÄ²ÎÊıÖµ
+        readfile = cli.getOptionValue("map");  // è·å–å‚æ•°â€œmapâ€å¯¹åº”çš„å‚æ•°å€¼
         FileIO.READ_PATH=System.getProperty("user.dir") + File.separator + "\\" +readfile;
         List<Station> map = new ArrayList<>();
         FileIO.readSubway(map);
         
-        if(cli.hasOption("o") && cli.hasOption("a") && !cli.hasOption("b")){//²éÑ¯ÏßÂ·
+        if(cli.hasOption("o") && cli.hasOption("a") && !cli.hasOption("b")){//æŸ¥è¯¢çº¿è·¯
             writefile = cli.getOptionValue("o","1");
             String lineNo = cli.getOptionValue("a");
             FileIO.WRITE_PATH=System.getProperty("user.dir") + File.separator + "\\" +writefile;
             String result = FileIO.readLine(lineNo);
             FileIO.writeStations(result);
         }
-        else if(cli.hasOption("o") && cli.hasOption("b") && !cli.hasOption("a")){//²éÑ¯×î¶Ì»»³Ë
+        else if(cli.hasOption("o") && cli.hasOption("b") && !cli.hasOption("a")){//æŸ¥è¯¢æœ€çŸ­æ¢ä¹˜
         	writefile = cli.getOptionValue("o","1");
         	FileIO.WRITE_PATH=System.getProperty("user.dir") + File.separator + "\\" +writefile;
         	String[] a = cli.getOptionValues("b");

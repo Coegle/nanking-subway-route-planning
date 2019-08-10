@@ -13,13 +13,13 @@ import java.util.Map;
  */
 public class Station {
 	public String name;
-	public List<String> line = new ArrayList<>();//ËùÊôÂ·Ïß
-	public List<Station> linkStations = new ArrayList<>();//ÏàÁÚÕ¾µã
-	public boolean isInterchangeStation=false;//ÊÇ·ñÊÇ»»³ËÕ¾
-	public Map<Station, LinkedHashSet<Station>> solutions = new HashMap<Station, LinkedHashSet<Station>>();//µ½¸÷¸ö³µÕ¾µÄ×î¶ÌÂ·Ïß
+	public List<String> line = new ArrayList<>();//æ‰€å±è·¯çº¿
+	public List<Station> linkStations = new ArrayList<>();//ç›¸é‚»ç«™ç‚¹
+	public boolean isInterchangeStation=false;//æ˜¯å¦æ˜¯æ¢ä¹˜ç«™
+	public Map<Station, LinkedHashSet<Station>> solutions = new HashMap<Station, LinkedHashSet<Station>>();//åˆ°å„ä¸ªè½¦ç«™çš„æœ€çŸ­è·¯çº¿
 	
 	/**
-	 * ÅĞ¶ÏÊÇ·ñ·¢ÉúÁË»»³Ë
+	 * åˆ¤æ–­æ˜¯å¦å‘ç”Ÿäº†æ¢ä¹˜
 	 * @param station
 	 * @return 
 	 */
@@ -85,11 +85,11 @@ public class Station {
 		
 	}
 	
-//	public String toString() {
-//		String temp="";
-//		for(Station s:this.linkStations) {
-//			temp+=" "+s.name;
-//		}
-//		return this.name+":"+this.line+",ÏàÁÚ³µÕ¾£º"+temp;
-//	}
+	public String toString() {
+		String temp="";
+		for(Station s:this.linkStations) {
+			temp+=" "+s.name;
+		}
+		return this.name+":"+this.line+",ç›¸é‚»è½¦ç«™ï¼š"+temp;
+	}
 }
